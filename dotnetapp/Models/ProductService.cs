@@ -20,12 +20,11 @@ namespace dotnetapp.Models
         }
         public IQueryable<Product> GetProductList()
         {
-           return_dbContext.Products.ToList();
+           return _dbContext.Products.ToList();
         }
-        public ActionResult AddProduct(Product product)
+        public bool AddProduct(Product product)
         {
-            try
-            {
+           
                 _dbContext.Products.Add(Product);
                 if(_dbContext.SaveChanges()>0)
                 {
@@ -36,21 +35,25 @@ namespace dotnetapp.Models
                     return false;
                 }
                 
-            }
-            catch(Exception ex)
-            {
-                
-            }
+            
+            
         }
 
-        public ActionResult DeleteProduct(int Id)
+        public bool DeleteProduct(int Id)
         {
             var product = _dbContext.Products.Find(id);
             if(product !=null)
             {
                 _dbContext.Products.Remove(product);
-                _dbContext.SaveChanges();
-                return true;
+                if(_dbContext.SaveChanges()>0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+                
             }
             return false;
         }

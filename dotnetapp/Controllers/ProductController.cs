@@ -24,23 +24,20 @@ namespace dotnetapp.Controllers
     [HttpGet]
     public IQueryable<Product> GetAll()
     {
-        return _productServices.GetAll();
+        return productServices.GetAll();
     }
 
     [HttpPost]
     public bool AddProduct(Product newProduct)
     {         
-      if (_productService.AddProduct(product))
-      return Ok("Product added sucessfully");
-      return BadRequest("Failed to add product");            
+      return productService.AddProduct(product);
+               
     } 
 
-    [HttpDelete("{id}")]
+    [HttpDelete]
     public bool DeleteProduct (int id)
     {
-      if (_productService.DeleteProduct(id))
-      return Ok("Product deleted sucessfully");
-      return NotFound("Product not found"); 
+      return productService.DeleteProduct(id);
     }
     }
 }
