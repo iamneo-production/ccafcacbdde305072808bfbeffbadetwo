@@ -5,7 +5,7 @@ using dotnetapp.Models;
 
 public partial class ProductDBContext : DbContext
 {
-    public ProductDBContext(DbContextOptions options):base(options)
+    public ProductDBContext(DbContextOptions<ProductDBContext> options):base(options)
     {
 
     }
