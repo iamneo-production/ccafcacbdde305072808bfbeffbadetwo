@@ -20,12 +20,12 @@ namespace dotnetapp.Models
         }
         public IQueryable<Product> GetProductList()
         {
-           return _dbContext.Products.ToList();
+           return _dbContext.Products.ToList().AsQueryable();
         }
         public bool AddProduct(Product product)
         {
            
-                _dbContext.Products.Add(Product);
+                _dbContext.Products.Add(product);
                 if(_dbContext.SaveChanges()>0)
                 {
                     return true;
@@ -41,7 +41,7 @@ namespace dotnetapp.Models
 
         public bool DeleteProduct(int Id)
         {
-            var product = _dbContext.Products.Find(id);
+            var product = _dbContext.Products.Find(Id);
             if(product !=null)
             {
                 _dbContext.Products.Remove(product);

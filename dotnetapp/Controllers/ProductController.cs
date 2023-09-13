@@ -24,13 +24,13 @@ namespace dotnetapp.Controllers
     [HttpGet]
     public IQueryable<Product> GetAll()
     {
-        return productServices.GetAll();
+        return productService.GetProductList();
     }
 
     [HttpPost]
     public bool AddProduct(Product newProduct)
     {         
-      return productService.AddProduct(product);
+      return productService.AddProduct(newProduct);
                
     } 
 
