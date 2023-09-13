@@ -34,11 +34,17 @@ namespace dotnetapp.Models
             {
                 return false;
             }
-            
         }
 
         public bool DeleteProduct(int Id)
         {
+            var product = _dbContext.Products.Find(id);
+            if(product !=null)
+            {
+                _dbContext.Products.Remove(product);
+                _dbContext.SaveChanges();
+                return true;
+            }
             return false;
         }
     }
