@@ -22,7 +22,7 @@ namespace dotnetapp.Controllers
     }
 
     [HttpGet]
-    public IQueryable<Product> GetProductList()
+    public IQueryable<Product> GetAll()
     {
         return _productServices.GetAll();
     }
@@ -40,7 +40,7 @@ namespace dotnetapp.Controllers
     {
       if (_productService.DeleteProduct(id))
       return Ok("Product deleted sucessfully");
-      return NotFound("Product not f") 
+      return NotFound("Product not found"); 
     }
     }
 }
