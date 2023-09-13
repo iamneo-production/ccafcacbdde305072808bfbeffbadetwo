@@ -22,21 +22,28 @@ namespace dotnetapp.Models
         {
            return_dbContext.Products.ToList();
         }
-        public bool AddProduct(Product product)
+        public ActionResult AddProduct(Product product)
         {
             try
             {
                 _dbContext.Products.Add(Product);
-                _dbContext.SaveChanges();
-                return true;
+                if(_dbContext.SaveChanges()>0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+                
             }
-            catch
+            catch(Exception ex)
             {
-                return false;
+                
             }
         }
 
-        public bool DeleteProduct(int Id)
+        public ActionResult DeleteProduct(int Id)
         {
             var product = _dbContext.Products.Find(id);
             if(product !=null)
